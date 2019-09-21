@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="produto of produtos">
+          <tr v-for="produto of produtos" :key=" produto.url.substring(34, produto.url.length - 1) ">
             <td> {{ produto.url.substring(34, produto.url.length - 1) }}</td>
             <td>
               <img :src="imgPokemon(produto.url) " />
@@ -103,12 +103,12 @@ export default {
   methods: {
     listar(next) {
       Pokemon.listar(next).then(resposta => {
-        console.table(resposta.data.results);
+        // console.table(resposta.data.results);
         this.produtos = resposta.data.results;
         this.next = resposta.data.next;
         this.previous = resposta.data.previous;
-        console.log(this.next);
-        console.log(this.previous);
+        // console.log(this.next);
+        // console.log(this.previous);
       });
     },
     infoPokemon(url) {
@@ -119,9 +119,9 @@ export default {
         this.id = resposta.data.id;
         this.peso = resposta.data.weight;
         this.altura = resposta.data.height;
-        console.table(this.habilidades);
-        console.log(this.foto);
-        console.log(this.nome);
+        // console.table(this.habilidades);
+        // console.log(this.foto);
+        // console.log(this.nome);
       });
     },
 
