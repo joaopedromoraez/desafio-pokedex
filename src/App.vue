@@ -9,6 +9,21 @@
       </nav>
     </div>
     <!-- ========Fim da Barra de navegação======== -->
+    <!-- ========Inicio da Barra de Busca============ -->
+    <nav>
+      <div class="nav-wrapper">
+        <form>
+          <div class="input-field">
+            <input id="search" type="search" required />
+            <label class="label-icon" for="search">
+              <i class="material-icons">search</i>
+            </label>
+            <i class="material-icons">close</i>
+          </div>
+        </form>
+      </div>
+    </nav>
+    <!-- ========Fim da Barra de Busca============ -->
 
     <div class="row">
       <!-- ========Inicio Card Pokémons======== -->
@@ -23,8 +38,9 @@
                 :title="pokemons.name"
                 alt="Imagem frontal do Pokémon"
               />
-              <a class="btn-floating halfway-fab waves-effect waves-light red">
-                <i class="material-icons">priority_high</i>
+              <a class="btn-floating halfway-fab waves-effect waves-light green">
+                <!-- <i class="material-icons">priority_high</i> -->
+                <i class="material-icons">info_outline</i>
               </a>
             </div>
             <div class="card-content blue">
@@ -136,7 +152,7 @@ export default {
         // console.log(this.previous);
       });
     },
-    
+
     infoPokemon(name) {
       PokemonApi.pokemonGeral(name).then(resposta => {
         this.pokemon.habilidades = resposta.data.abilities;
