@@ -10,11 +10,11 @@
     </div>
     <!-- ========Fim da Barra de navegação======== -->
     <!-- ========Inicio da Barra de Busca============ -->
-    <!-- <nav>
+    <nav>
       <div class="nav-wrapper">
         <form>
           <div class="input-field">
-            <input id="search" type="search" v-model="busca" v-on:keyup.enter="buscaPokemon();" />
+            <input id="search" type="search" v-model="busca" v-on:input="buscaPokemon();" />
             <label class="label-icon" for="search">
               <i class="material-icons">search</i>
             </label>
@@ -22,7 +22,7 @@
           </div>
         </form>
       </div>
-    </nav> -->
+    </nav>
     <!-- ========Fim da Barra de Busca============ -->
     <div class="row">
       <!-- ========Inicio Card Pokémons======== -->
@@ -76,7 +76,7 @@
       <div class="modal-content">
         <img class="responsive-img card-imagem" :src="pokemon.foto" />
         <div class="white box-interno">
-          <h4 class="center-align">{{ pokemon.nome }} <a class="right btn-floating btn-large waves-effect waves-light red"><b>{{ pokemon.id }}</b></a></h4>
+          <h4 class="center-align">{{ pokemon.nome | capitalizeFirstLetter() }} <a class="right btn-floating btn-large waves-effect waves-light red"><b>{{ pokemon.id }}</b></a></h4>
           
           <p>
             <b>Peso:</b>
@@ -138,7 +138,7 @@ export default {
         id: null,
         habilidades: [],
         foto: null,
-        nome: null,
+        nome: '',
         peso: null,
         altura: null,
         tipo: [],
@@ -206,11 +206,10 @@ export default {
     },
 
     buscaPokemon() {
-      this.listaDepokemons = this.listaGeralPokemon.filter(function(item) {
-        return item.name == this.busca;
-        // return (item.name == "pikachu");
+      this.listaDepokemons = this.listaGeralPokemon.filter((pokemon)=>{
+        return pokemon.name.indexOf(this.busca) !== -1;
       });
-      console.table(this.busca);
+      console.table(this.listaDepokemons);
     }
   }
 };
