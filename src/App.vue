@@ -74,7 +74,7 @@
     <!-- ========Inicio da Estrutura do Modal======== -->
     <div id="modal1" class="modal modal-fixed-footer" :class="pokemon.cor">
       <div class="modal-content">
-        <img class="responsive-img" :src="pokemon.foto" />
+        <img class="responsive-img card-imagem" :src="pokemon.foto" />
         <div class="white box-interno">
           <h4 class="center-align">{{ pokemon.nome }} <a class="right btn-floating btn-large waves-effect waves-light red"><b>{{ pokemon.id }}</b></a></h4>
           
@@ -184,10 +184,10 @@ export default {
         // console.log(this.foto);
         // console.log(this.nome);
       }),
-        PokemonApi.especie(name).then(resposta => {
-          this.pokemon.grupo_ovo = resposta.data.egg_groups;
-          this.pokemon.cor = resposta.data.color.name;
-        });
+      PokemonApi.especie(name).then(resposta => {
+        this.pokemon.grupo_ovo = resposta.data.egg_groups;
+        this.pokemon.cor = resposta.data.color.name;
+      });
     },
 
     imgPokemon(url) {
