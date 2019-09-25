@@ -4,7 +4,7 @@
     <!-- ========Inicio da Barra de navegação======== -->
     <div class="navbar-fixed">
       <nav>
-        <div class="nav-wrapper red darken-1">
+        <div class="nav-wrapper red darken-3">
           <a href="#" class="brand-logo center">Pokédex</a>
           <form>
             <div class="input-field">
@@ -20,13 +20,27 @@
     </div>
     <!-- ========Fim da Barra de navegação======== -->
 
+    <!-- mensagem de erro -->
+    <div class="row" v-if="erro">
+      <div class="col s6 m6 l4 xl2 offset-s3 offset-m3 offset-l4 offset-xl5">
+        <div class="card">
+          <div class="card-image">
+            <img src="pikachu_cry.jpg">
+          </div>
+          <div class="card-content center">
+            <p><b>Serviço fora do ar!</b></p>
+          </div>
+        </div>
+      </div>
+    </div>      
+    <!-- mensagem de erro -->
+
 
     <!-- ========Inicio Card Pokémons======== -->
     <div class="row">
-      <div class="col s6 m6 l4 xl2" v-for="pokemons of listaDepokemons" v-bind:key="pokemons.id">
-        
-        <div class="card modal-trigger" href="#modal1" v-on:click="infoPokemon(pokemons.name)">
-          <a class="float btn-floating btn halfway-fab waves-effect waves-light grey"><b>{{ pokemons.url | urlToId()}}</b></a>
+      <div class="col s6 m6 l4 xl2" v-for="pokemons of listaDepokemons" v-bind:key="pokemons.id" tabindex="1">
+        <div class="card modal-trigger" href="#modal1" v-on:click="infoPokemon(pokemons.name)" >
+          <a class="float btn-floating btn halfway-fab waves-effect waves-light blue darken-2"><b>{{ pokemons.url | urlToId()}}</b></a>
           <div>
             <div class="card-image">
               <img
@@ -36,7 +50,7 @@
                 alt="Imagem frontal do Pokémon"
               />
             </div>
-            <div class="card-content blue">
+            <div class="card-content grey darken-2">
               <span
                 class="card-title center-align white-text activator"
               >{{ pokemons.name | capitalizeFirstLetter() }}</span>
@@ -110,6 +124,7 @@ export default {
       listaDepokemons: [],
       next: 20,
       busca: null,
+      erro: false,
       pokemon: {
         id: null,
         habilidades: [],
@@ -146,6 +161,10 @@ export default {
       PokemonApi.listar(next).then(resposta => {
         this.listaGeralPokemon = resposta.data.results;
         this.listaDepokemons = this.listaGeralPokemon;
+      })
+      .catch(error => {
+        console.log(error);
+        this.erro = true;
       });
     },
 

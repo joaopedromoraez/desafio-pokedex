@@ -1,0 +1,36 @@
+.float {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.box-interno {
+  padding: 20px;
+}
+
+@media (min-width: 600px) {
+  #modal1 {
+    width: 450px;
+  }
+}
+
+.card-imagem {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* #app{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.row{
+  flex: 1 0 0;
+} */

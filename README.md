@@ -1,8 +1,8 @@
-# desafio-pokedex
+# Desafio Pokédex
 
-https://github.com/the-argonaut/teste-tecnico-estagio
+Copyright (c) 2019 by João Pedro Moraes (https://github.com/joaopedromoraes/desafio-pokedex)
 
-## Corrigir Build
-node_modules/@vue/cli-service/lib/options.js
+Modelo de pokedex alimentado pela Pokéapi utilizando javascript, HTML 5, CSS3 e VUE.js.
 
-publicPath: '',
+para acessar documentação da Pokéapi utilizar o link: <https://pokeapi.co/>
+

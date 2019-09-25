@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link rel="icon" href="favicon.ico">
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
@@ -16,7 +16,8 @@
   <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
   <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
   <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
-
+  <!-- custom css -->
+  <link rel="stylesheet" href="custom.css">
 
   <script>
     $(document).ready(function () {
@@ -24,54 +25,25 @@
     });
 
   </script>
-  <style>
-    .float {
-      position: absolute;
-      left: 10px;
-      top: 10px;
-    }
-
-    .box-interno {
-      padding: 20px;
-    }
-
-    @media (min-width: 600px) {
-      #modal1 {
-        width: 450px;
-      }
-    }
-
-    .card-imagem {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 40%;
-    }
-
-    .modal-content::-webkit-scrollbar {
-      display: none;
-    }
-
-  </style>
 
   <title>Pokédex - Desafio</title>
 </head>
 
-<body>
+<body class="red lighten-1">
   <noscript>
     <strong>We're sorry but estudo-api doesn't work properly without JavaScript enabled. Please enable it to
       continue.</strong>
   </noscript>
   <div id="app"></div>
 
-  <footer class="page-footer red">
+  <!-- <footer class="page-footer red">
 
     <div class="container ">
       © 2019 João Pedro Moraes
       <a class="grey-text text-lighten-4 right" href="https://github.com/JoaoPedroMoraes/desafio-pokedex">Github</a>
     </div><br>
 
-  </footer>
+  </footer> -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
