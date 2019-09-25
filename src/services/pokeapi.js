@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default {
 
-    listar:(next = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=10079') => {
+    listar:(next = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=722') => {
         return axios.get(next)
     },
 

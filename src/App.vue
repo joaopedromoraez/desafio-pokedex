@@ -1,34 +1,32 @@
 <template>
   <div id="app">
+
     <!-- ========Inicio da Barra de navegação======== -->
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper red darken-1">
           <a href="#" class="brand-logo center">Pokédex</a>
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" v-model="busca" v-on:input="buscaPokemon();" />
+              <label class="label-icon" for="search">
+                <i class="material-icons">search</i>
+              </label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>          
         </div>
       </nav>
     </div>
     <!-- ========Fim da Barra de navegação======== -->
-    <!-- ========Inicio da Barra de Busca============ -->
-    <nav>
-      <div class="nav-wrapper">
-        <form>
-          <div class="input-field">
-            <input id="search" type="search" v-model="busca" v-on:input="buscaPokemon();" />
-            <label class="label-icon" for="search">
-              <i class="material-icons">search</i>
-            </label>
-            <i class="material-icons">close</i>
-          </div>
-        </form>
-      </div>
-    </nav>
-    <!-- ========Fim da Barra de Busca============ -->
+
+
+    <!-- ========Inicio Card Pokémons======== -->
     <div class="row">
-      <!-- ========Inicio Card Pokémons======== -->
       <div class="col s6 m6 l4 xl2" v-for="pokemons of listaDepokemons" v-bind:key="pokemons.id">
+        
         <div class="card modal-trigger" href="#modal1" v-on:click="infoPokemon(pokemons.name)">
-          <!-- <div class="card waves-effect waves-block waves-light"> -->
+          <a class="float btn-floating btn halfway-fab waves-effect waves-light grey"><b>{{ pokemons.url | urlToId()}}</b></a>
           <div>
             <div class="card-image">
               <img
@@ -37,9 +35,6 @@
                 :title="pokemons.name"
                 alt="Imagem frontal do Pokémon"
               />
-              <!-- <a class="btn-floating halfway-fab waves-effect waves-light green">
-                <i class="material-icons">info_outline</i>
-              </a> -->
             </div>
             <div class="card-content blue">
               <span
@@ -49,35 +44,16 @@
           </div>
         </div>
       </div>
-      <!-- ========Fim Card Pokémons======== -->
-
-      <!-- ========Inicio Botão de navegação======== -->
-      <div class="col s6 m6 l4 xl2" v-on:click="nextPokemons();">
-        <div class="card modal-trigger">
-          <!-- <div class="card waves-effect waves-block waves-light"> -->
-          <div>
-            <div class="card-image">
-              <img src="default.png" title="Botão de proximo" alt="Imagem frontal do Pokémon" />
-              <a class="btn-floating halfway-fab waves-effect waves-light red">
-                <i class="material-icons">add</i>
-              </a>
-            </div>
-            <div class="card-content blue">
-              <span class="card-title center-align white-text activator">Mais</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ========Fim Botão de navegação======== -->
     </div>
+    <!-- ========Fim Card Pokémons======== -->
+
 
     <!-- ========Inicio da Estrutura do Modal======== -->
     <div id="modal1" class="modal modal-fixed-footer" :class="pokemon.cor">
-      <div class="modal-content">
+      <div id="modal-main" class="modal-content">
         <img class="responsive-img card-imagem" :src="pokemon.foto" />
         <div class="white box-interno">
           <h4 class="center-align">{{ pokemon.nome | capitalizeFirstLetter() }} <a class="right btn-floating btn-large waves-effect waves-light red"><b>{{ pokemon.id }}</b></a></h4>
-          
           <p>
             <b>Peso:</b>
             <div class="chip">{{ pokemon.peso }} kg</div>
@@ -158,15 +134,18 @@ export default {
       return string.replace(/\w\S*/g, function(txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
+    },
+    
+    urlToId(url){
+      return url.substring(34, url.length - 1)
     }
   },
 
   methods: {
     listar(next) {
       PokemonApi.listar(next).then(resposta => {
-        // console.table(resposta.data.results);
         this.listaGeralPokemon = resposta.data.results;
-        this.listaDepokemons = this.listaGeralPokemon.slice(0, 20);
+        this.listaDepokemons = this.listaGeralPokemon;
       });
     },
 
@@ -198,18 +177,18 @@ export default {
       );
     },
 
-    nextPokemons() {
-      this.listaDepokemons.push(
-        ...this.listaGeralPokemon.slice(this.next, this.next + 20)
-      );
-      this.next = this.next + 20;
-    },
+    // nextPokemons() {
+    //   this.listaDepokemons.push(
+    //     ...this.listaGeralPokemon.slice(this.next, this.next + 20)
+    //   );
+    //   this.next = this.next + 20;
+    // },
 
     buscaPokemon() {
       this.listaDepokemons = this.listaGeralPokemon.filter((pokemon)=>{
         return pokemon.name.indexOf(this.busca) !== -1;
       });
-      console.table(this.listaDepokemons);
+      // console.table(this.listaDepokemons);
     }
   }
 };
